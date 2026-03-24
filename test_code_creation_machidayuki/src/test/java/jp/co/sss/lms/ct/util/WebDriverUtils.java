@@ -165,5 +165,14 @@ public class WebDriverUtils {
 	public static void clickButton(String buttonId) {
 		webDriver.findElement(By.cssSelector(buttonId)).click();
 	}
+	
+	/**
+	 * 引数のリンクをクリック
+	 * @param liText
+	 * @author 町田優希-Case04
+	 */
+	public static void clickLink(String linkValue) {
+		webDriver.findElement(By.linkText(linkValue)).click();;
+	}
 
 }
