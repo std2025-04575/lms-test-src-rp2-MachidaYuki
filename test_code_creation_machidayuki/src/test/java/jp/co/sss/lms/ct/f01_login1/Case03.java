@@ -10,6 +10,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
 
 /**
  * 結合テスト ログイン機能①
@@ -49,7 +50,7 @@ public class Case03 {
 		setLoginId("StudentAA01");
 		setPassword("StudentAA01Test");
 		clickButton("input[class='btn btn-primary']");
-		pageLoadTimeout(100);
+		visibilityTimeout(By.cssSelector("li[class=\"active\"]"), 30);
 		assertEquals("コース詳細 | LMS", getTitle());
 		getEvidence(new Object(){});
 	}
