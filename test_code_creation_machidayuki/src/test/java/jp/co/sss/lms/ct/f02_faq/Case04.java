@@ -71,6 +71,10 @@ public class Case04 {
 	@DisplayName("テスト04 「よくある質問」リンクからよくある質問画面を別タブに開く")
 	void test04() {
 		clickLink("よくある質問");
+		changeWindow();
+		visibilityTimeout(By.cssSelector("h2"), 30);
+		assertEquals("よくある質問 | LMS", getTitle());
+		getEvidence(new Object(){});
 	}
 
 }
