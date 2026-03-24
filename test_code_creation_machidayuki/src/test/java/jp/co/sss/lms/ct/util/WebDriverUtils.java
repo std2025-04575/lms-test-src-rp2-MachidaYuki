@@ -9,6 +9,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -122,6 +123,47 @@ public class WebDriverUtils {
 	 */
 	public static String getTitle() {
 		return webDriver.getTitle();
+	}
+	
+	/**
+	 * ログインIDを入力
+	 * @param inputLoginId
+	 * @author 町田優希-Case02
+	 */
+	public static void setLoginId(String inputLoginId) {
+		WebElement loginId = webDriver.findElement(By.id("loginId"));
+		loginId.clear();
+		loginId.sendKeys(inputLoginId);
+	}
+	
+	/**
+	 * パスワードを入力
+	 * @param inputPassword
+	 * @author 町田優希-Case02
+	 */
+	public static void setPassword(String inputPassword) {
+		WebElement Password = webDriver.findElement(By.id("password"));
+		Password.clear();
+		Password.sendKeys(inputPassword);
+	}
+	
+	/**
+	 * メッセージを文字列で取得
+	 * @param serchMessage
+	 * @return メッセージ
+	 * @author 町田優希-Case02
+	 */
+	public static String getMessage(String serchMessage) {
+		return webDriver.findElement(By.cssSelector(serchMessage)).getText();
+	}
+	
+	/**
+	 * 引数のボタンをクリック
+	 * @param buttonId
+	 * @author 町田優希-Case02
+	 */
+	public static void clickButton(String buttonId) {
+		webDriver.findElement(By.cssSelector(buttonId)).click();
 	}
 
 }
