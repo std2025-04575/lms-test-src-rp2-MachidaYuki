@@ -172,7 +172,16 @@ public class WebDriverUtils {
 	 * @author 町田優希-Case04
 	 */
 	public static void clickLink(String linkValue) {
-		webDriver.findElement(By.linkText(linkValue)).click();;
+		webDriver.findElement(By.linkText(linkValue)).click();
+	}
+	
+	/**
+	 * タブを切り替える
+	 * @author 町田優希-Case04
+	 */
+	public static void changeWindow() {
+		Object[] windowHandles=webDriver.getWindowHandles().toArray();
+		webDriver.switchTo().window((String) windowHandles[1]);
 	}
 
 }
