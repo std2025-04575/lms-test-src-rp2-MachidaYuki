@@ -1,6 +1,7 @@
 package jp.co.sss.lms.ct.f01_login1;
 
 import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -35,14 +36,22 @@ public class Case03 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
-		// TODO ここに追加
+		goTo("http://localhost:8080/lms/");
+		pageLoadTimeout(30);
+		assertEquals("ログイン | LMS", getTitle());
+		getEvidence(new Object(){});
 	}
 
 	@Test
 	@Order(2)
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
-		// TODO ここに追加
+		setLoginId("StudentAA01");
+		setPassword("StudentAA01Test");
+		clickButton("input[class='btn btn-primary']");
+		pageLoadTimeout(100);
+		assertEquals("コース詳細 | LMS", getTitle());
+		getEvidence(new Object(){});
 	}
 
 }
