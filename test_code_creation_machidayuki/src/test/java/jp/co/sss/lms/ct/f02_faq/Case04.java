@@ -1,6 +1,7 @@
 package jp.co.sss.lms.ct.f02_faq;
 
 import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
 
 /**
  * 結合テスト よくある質問機能
@@ -35,28 +37,40 @@ public class Case04 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
-		// TODO ここに追加
+		goTo("http://localhost:8080/lms/");
+		pageLoadTimeout(30);
+		assertEquals("ログイン | LMS", getTitle());
+		getEvidence(new Object(){});
 	}
 
 	@Test
 	@Order(2)
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
-		// TODO ここに追加
+		setLoginId("StudentAA01");
+		setPassword("StudentAA01Test");
+		clickButton("input[class='btn btn-primary']");
+		visibilityTimeout(By.cssSelector("li[class='active']"), 30);
+		assertEquals("コース詳細 | LMS", getTitle());
+		getEvidence(new Object(){});
 	}
 
 	@Test
 	@Order(3)
 	@DisplayName("テスト03 上部メニューの「ヘルプ」リンクからヘルプ画面に遷移")
 	void test03() {
-		// TODO ここに追加
+		clickLink("機能");
+		clickLink("ヘルプ");
+		visibilityTimeout(By.cssSelector("div[class='panel panel-primary']"), 30);
+		assertEquals("ヘルプ | LMS", getTitle());
+		getEvidence(new Object(){});
 	}
 
 	@Test
 	@Order(4)
 	@DisplayName("テスト04 「よくある質問」リンクからよくある質問画面を別タブに開く")
 	void test04() {
-		// TODO ここに追加
+		clickLink("よくある質問");
 	}
 
 }
