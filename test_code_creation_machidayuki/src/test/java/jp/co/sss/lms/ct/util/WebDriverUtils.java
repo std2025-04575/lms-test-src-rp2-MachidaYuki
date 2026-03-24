@@ -114,5 +114,14 @@ public class WebDriverUtils {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * タイトルを取得
+	 * @return タイトル
+	 * @author 町田優希-Case01
+	 */
+	public static String getTitle() {
+		return webDriver.getTitle();
+	}
 
 }
