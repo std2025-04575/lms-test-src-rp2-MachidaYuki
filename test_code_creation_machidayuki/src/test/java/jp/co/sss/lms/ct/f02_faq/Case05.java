@@ -48,10 +48,10 @@ public class Case05 {
 	@Order(2)
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
-		setLoginId("StudentAA01");
-		setPassword("StudentAA01Test");
-		clickButton("input[class='btn btn-primary']");
-		visibilityTimeout(By.cssSelector("li[class='active']"), 30);
+		inputAtElement(getElementById("loginId"), "StudentAA01");
+		inputAtElement(getElementById("password"), "StudentAA01Test");
+		clickElement(getElementByCssSelector("input[class='btn btn-primary']"));
+		visibilityTimeout(By.cssSelector("li[class=\"active\"]"), 30);
 		assertEquals("コース詳細 | LMS", getTitle());
 		getEvidence(new Object(){});
 	}
@@ -60,8 +60,8 @@ public class Case05 {
 	@Order(3)
 	@DisplayName("テスト03 上部メニューの「ヘルプ」リンクからヘルプ画面に遷移")
 	void test03() {
-		clickLink("機能");
-		clickLink("ヘルプ");
+		clickElement(getLink("機能"));
+		clickElement(getLink("ヘルプ"));
 		visibilityTimeout(By.cssSelector("div[class='panel panel-primary']"), 30);
 		assertEquals("ヘルプ | LMS", getTitle());
 		getEvidence(new Object(){});
@@ -71,21 +71,22 @@ public class Case05 {
 	@Order(4)
 	@DisplayName("テスト04 「よくある質問」リンクからよくある質問画面を別タブに開く")
 	void test04() {
-		clickLink("よくある質問");
+		clickElement(getLink("よくある質問"));
 		changeWindow();
-		visibilityTimeout(By.cssSelector("form[class='form-horizontal']"), 30);
+		visibilityTimeout(By.cssSelector("h2"), 30);
 		assertEquals("よくある質問 | LMS", getTitle());
 		getEvidence(new Object(){});
 	}
+	
 	@Test
 	@Order(5)
 	@DisplayName("テスト05 キーワード検索で該当キーワードを含む検索結果だけ表示")
 	void test05() {
-		setKeyword("助成金");
-		clickButton("input[type='submit']");
+		inputAtElement(getElementById("form"), "助成金");
+		clickElement(getElementByCssSelector("input[type='submit']"));
 		visibilityTimeout(By.cssSelector("form[class='form-horizontal']"), 30);
 		scrollBy("window.innerHeight");
-		assertEquals("Q.助成金書類の作成方法が分かりません", getMessage("dt[class='mb10']"));
+		assertEquals("Q.助成金書類の作成方法が分かりません", getText(getElementByCssSelector("dt[class='mb10']")));
 		getEvidence(new Object(){});
 	}
 	
@@ -95,8 +96,8 @@ public class Case05 {
 	void test06() {
 		scrollTo("0");
 		visibilityTimeout(By.cssSelector("h2"), 30);
-		clickButton("input[type='button']");
-		assertEquals("", getKeyword("form"));
+		clickElement(getElementByCssSelector("input[type='button']"));
+		assertEquals("", getText(getElementById("form")));
 		getEvidence(new Object(){});
 	}
 
