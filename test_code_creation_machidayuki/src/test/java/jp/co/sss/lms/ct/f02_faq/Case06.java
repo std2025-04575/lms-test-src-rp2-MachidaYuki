@@ -83,6 +83,7 @@ public class Case06 {
 	void test05() {
 		clickLink("【研修関係】");
 		scrollBy("window.innerHeight");
+		assertEquals("Q.キャンセル料・途中退校について", getMessage("dt[class='mb10']"));
 		getEvidence(new Object(){});
 	}
 
