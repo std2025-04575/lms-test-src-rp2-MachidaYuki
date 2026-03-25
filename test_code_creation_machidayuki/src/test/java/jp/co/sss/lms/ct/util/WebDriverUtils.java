@@ -126,18 +126,28 @@ public class WebDriverUtils {
 	}
 	
 	/**
-	 * id属性で要素を取得
+	 * idで要素を取得
 	 * @param id
 	 * @return 要素
 	 * @author 町田優希-Case02
 	 */
-	public static WebElement getElementById(String id) {
-		 return webDriver.findElement(By.id(id));
+	public static WebElement getElementById(String serchid) {
+		 return webDriver.findElement(By.id(serchid));
+	}
+	
+	/**
+	 * cssSelectorで要素を取得
+	 * @param serchCssSelector
+	 * @return 要素
+	 * @author 町田優希-Case02
+	 */
+	public static WebElement getElementByCssSelector(String serchCssSelector) {
+		 return webDriver.findElement(By.cssSelector(serchCssSelector));
 	}
 	
 	/**
 	 * 要素に引数の文字列を入力
-	 * @param id
+	 * @param element
 	 * @param inputString
 	 * @author 町田優希-Case02
 	 */
@@ -147,22 +157,22 @@ public class WebDriverUtils {
 	}
 	
 	/**
-	 * メッセージを文字列で取得
-	 * @param serchMessage
-	 * @return メッセージ
+	 * 要素を文字列で取得
+	 * @param element
+	 * @return テキスト
 	 * @author 町田優希-Case02
 	 */
-	public static String getMessage(String serchMessage) {
-		return webDriver.findElement(By.cssSelector(serchMessage)).getText();
+	public static String getText(WebElement element) {
+		return element.getText();
 	}
 	
 	/**
-	 * 引数のボタンをクリック
+	 * 引数の要素をクリック
 	 * @param buttonId
 	 * @author 町田優希-Case02
 	 */
-	public static void clickButton(String buttonId) {
-		webDriver.findElement(By.cssSelector(buttonId)).click();
+	public static void clickElement(WebElement element) {
+		element.click();
 	}
 	
 	/**
