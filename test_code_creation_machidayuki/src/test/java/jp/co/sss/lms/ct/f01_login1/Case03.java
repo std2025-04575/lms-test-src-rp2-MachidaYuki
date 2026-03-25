@@ -47,9 +47,9 @@ public class Case03 {
 	@Order(2)
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
-		setLoginId("StudentAA01");
-		setPassword("StudentAA01Test");
-		clickButton("input[class='btn btn-primary']");
+		inputAtElement(getElementById("loginId"), "StudentAA01");
+		inputAtElement(getElementById("password"), "StudentAA01Test");
+		clickElement(getElementByCssSelector("input[class='btn btn-primary']"));
 		visibilityTimeout(By.cssSelector("li[class=\"active\"]"), 30);
 		assertEquals("コース詳細 | LMS", getTitle());
 		getEvidence(new Object(){});
