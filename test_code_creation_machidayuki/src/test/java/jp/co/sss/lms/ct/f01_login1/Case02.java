@@ -39,19 +39,21 @@ public class Case02 {
 		goTo("http://localhost:8080/lms/");
 		pageLoadTimeout(30);
 		assertEquals("ログイン | LMS", getTitle());
-		getEvidence(new Object(){});
+		getEvidence(new Object() {
+		});
 	}
 
 	@Test
 	@Order(2)
 	@DisplayName("テスト02 DBに登録されていないユーザーでログイン")
 	void test02() {
-		setLoginId("StudentZZ01");
-		setPassword("StudentZZ01");
-		clickButton("input[class='btn btn-primary']");
+		inputAtElement(getElementById("loginId"), "StudentZZ01");
+		inputAtElement(getElementById("password"), "StudentZZ01");
+		clickElement(getElementByCssSelector("input[class='btn btn-primary']"));
 		pageLoadTimeout(90);
-		assertEquals("* ログインに失敗しました。", getMessage("span[class='help-inline error']"));
-		getEvidence(new Object(){});
+		assertEquals("* ログインに失敗しました。", getText(getElementByCssSelector("span[class='help-inline error']")));
+		getEvidence(new Object() {
+		});
 	}
 
 }
