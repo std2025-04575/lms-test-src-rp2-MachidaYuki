@@ -47,10 +47,10 @@ public class Case04 {
 	@Order(2)
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
-		setLoginId("StudentAA01");
-		setPassword("StudentAA01Test");
-		clickButton("input[class='btn btn-primary']");
-		visibilityTimeout(By.cssSelector("li[class='active']"), 30);
+		inputAtElement(getElementById("loginId"), "StudentAA01");
+		inputAtElement(getElementById("password"), "StudentAA01Test");
+		clickElement(getElementByCssSelector("input[class='btn btn-primary']"));
+		visibilityTimeout(By.cssSelector("li[class=\"active\"]"), 30);
 		assertEquals("コース詳細 | LMS", getTitle());
 		getEvidence(new Object(){});
 	}
@@ -59,8 +59,8 @@ public class Case04 {
 	@Order(3)
 	@DisplayName("テスト03 上部メニューの「ヘルプ」リンクからヘルプ画面に遷移")
 	void test03() {
-		clickLink("機能");
-		clickLink("ヘルプ");
+		clickElement(getLink("機能"));
+		clickElement(getLink("ヘルプ"));
 		visibilityTimeout(By.cssSelector("div[class='panel panel-primary']"), 30);
 		assertEquals("ヘルプ | LMS", getTitle());
 		getEvidence(new Object(){});
@@ -70,7 +70,7 @@ public class Case04 {
 	@Order(4)
 	@DisplayName("テスト04 「よくある質問」リンクからよくある質問画面を別タブに開く")
 	void test04() {
-		clickLink("よくある質問");
+		clickElement(getLink("よくある質問"));
 		changeWindow();
 		visibilityTimeout(By.cssSelector("h2"), 30);
 		assertEquals("よくある質問 | LMS", getTitle());
