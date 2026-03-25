@@ -183,5 +183,26 @@ public class WebDriverUtils {
 		Object[] windowHandles=webDriver.getWindowHandles().toArray();
 		webDriver.switchTo().window((String) windowHandles[1]);
 	}
-
+	
+	/**
+	 * よくある質問画面のキーワードを入力する
+	 * @param inputKeyword
+	 * @author 町田優希-Case05
+	 */
+	public static void setKeyword(String inputKeyword) {
+		WebElement keyword = webDriver.findElement(By.id("form"));
+		keyword.clear();
+		keyword.sendKeys(inputKeyword);
+	}
+	
+	/**
+	 * キーワードを取得
+	 * @param serchId
+	 * @return キーワード
+	 * @author 町田優希-Case05
+	 */
+	public static String getKeyword(String serchId) {
+		return webDriver.findElement(By.id(serchId)).getText();
+	}
+	
 }
