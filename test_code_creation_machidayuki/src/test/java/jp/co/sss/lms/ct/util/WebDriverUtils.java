@@ -126,25 +126,24 @@ public class WebDriverUtils {
 	}
 	
 	/**
-	 * ログインIDを入力
-	 * @param inputLoginId
+	 * id属性で要素を取得
+	 * @param id
+	 * @return 要素
 	 * @author 町田優希-Case02
 	 */
-	public static void setLoginId(String inputLoginId) {
-		WebElement loginId = webDriver.findElement(By.id("loginId"));
-		loginId.clear();
-		loginId.sendKeys(inputLoginId);
+	public static WebElement getElementById(String id) {
+		 return webDriver.findElement(By.id(id));
 	}
 	
 	/**
-	 * パスワードを入力
-	 * @param inputPassword
+	 * 要素に引数の文字列を入力
+	 * @param id
+	 * @param inputString
 	 * @author 町田優希-Case02
 	 */
-	public static void setPassword(String inputPassword) {
-		WebElement Password = webDriver.findElement(By.id("password"));
-		Password.clear();
-		Password.sendKeys(inputPassword);
+	public static void inputAtElement(WebElement element, String inputString) {
+		element.clear();
+		element.sendKeys(inputString);
 	}
 	
 	/**
