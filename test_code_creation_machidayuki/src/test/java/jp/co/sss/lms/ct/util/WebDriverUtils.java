@@ -176,12 +176,13 @@ public class WebDriverUtils {
 	}
 	
 	/**
-	 * 引数のリンクをクリック
-	 * @param liText
+	 * 引数の文字列と完全一致のリンクを取得
+	 * @param linkValue
+	 * @return リンク
 	 * @author 町田優希-Case04
 	 */
-	public static void clickLink(String linkValue) {
-		webDriver.findElement(By.linkText(linkValue)).click();
+	public static WebElement getLink(String linkValue) {
+		return webDriver.findElement(By.linkText(linkValue));
 	}
 	
 	/**
