@@ -205,4 +205,13 @@ public class WebDriverUtils {
 		return webDriver.findElement(By.id(serchId)).getText();
 	}
 	
+	/**
+	 * 引数の要素が表示されているか判断
+	 * @param checkId
+	 * @return 引数の要素が表示されているか
+	 * @author 町田優希-Case06
+	 */
+	public static boolean checkDisplayed(String checkId) {
+		return webDriver.findElement(By.id(checkId)).isDisplayed();
+	}
 }
