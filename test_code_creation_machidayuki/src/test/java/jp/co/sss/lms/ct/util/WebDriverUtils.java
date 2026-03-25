@@ -195,27 +195,6 @@ public class WebDriverUtils {
 	}
 	
 	/**
-	 * よくある質問画面のキーワードを入力する
-	 * @param inputKeyword
-	 * @author 町田優希-Case05
-	 */
-	public static void setKeyword(String inputKeyword) {
-		WebElement keyword = webDriver.findElement(By.id("form"));
-		keyword.clear();
-		keyword.sendKeys(inputKeyword);
-	}
-	
-	/**
-	 * キーワードを取得
-	 * @param serchId
-	 * @return キーワード
-	 * @author 町田優希-Case05
-	 */
-	public static String getKeyword(String serchId) {
-		return webDriver.findElement(By.id(serchId)).getText();
-	}
-	
-	/**
 	 * 引数の要素が表示されているか判断
 	 * @param checkId
 	 * @return 引数の要素が表示されているか
