@@ -85,6 +85,7 @@ public class Case05 {
 		clickButton("input[type='submit']");
 		visibilityTimeout(By.cssSelector("form[class='form-horizontal']"), 30);
 		scrollBy("window.innerHeight");
+		assertEquals("Q.助成金書類の作成方法が分かりません", getMessage("dt[class='mb10']"));
 		getEvidence(new Object(){});
 	}
 	
