@@ -37,7 +37,7 @@ public class Case01 {
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
 		goTo("http://localhost:8080/lms/");
-		pageLoadTimeout(30);
+		pageLoadTimeout(10);
 		assertEquals("ログイン | LMS", getTitle());
 		getEvidence(new Object(){});
 	}
