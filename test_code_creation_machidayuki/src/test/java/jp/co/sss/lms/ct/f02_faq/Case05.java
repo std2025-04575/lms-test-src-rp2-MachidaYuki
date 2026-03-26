@@ -39,7 +39,7 @@ public class Case05 {
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
 		goTo("http://localhost:8080/lms/");
-		pageLoadTimeout(30);
+		pageLoadTimeout(10);
 		assertEquals("ログイン | LMS", getTitle());
 		getEvidence(new Object(){});
 	}
@@ -51,7 +51,7 @@ public class Case05 {
 		inputAtElement(getElementById("loginId"), "StudentAA01");
 		inputAtElement(getElementById("password"), "StudentAA01Test");
 		clickElement(getElementByCssSelector("input[class='btn btn-primary']"));
-		visibilityTimeout(By.cssSelector("li[class=\"active\"]"), 30);
+		visibilityTimeout(By.cssSelector("li[class='active']"), 10);
 		assertEquals("コース詳細 | LMS", getTitle());
 		getEvidence(new Object(){});
 	}
@@ -62,7 +62,7 @@ public class Case05 {
 	void test03() {
 		clickElement(getLink("機能"));
 		clickElement(getLink("ヘルプ"));
-		visibilityTimeout(By.cssSelector("div[class='panel panel-primary']"), 30);
+		visibilityTimeout(By.cssSelector("div[class='panel panel-primary']"), 10);
 		assertEquals("ヘルプ | LMS", getTitle());
 		getEvidence(new Object(){});
 	}
@@ -73,7 +73,7 @@ public class Case05 {
 	void test04() {
 		clickElement(getLink("よくある質問"));
 		changeWindow();
-		visibilityTimeout(By.cssSelector("h2"), 30);
+		visibilityTimeout(By.cssSelector("h2"), 10);
 		assertEquals("よくある質問 | LMS", getTitle());
 		getEvidence(new Object(){});
 	}
@@ -84,7 +84,7 @@ public class Case05 {
 	void test05() {
 		inputAtElement(getElementById("form"), "助成金");
 		clickElement(getElementByCssSelector("input[type='submit']"));
-		visibilityTimeout(By.cssSelector("form[class='form-horizontal']"), 30);
+		visibilityTimeout(By.cssSelector("form[class='form-horizontal']"), 10);
 		scrollBy("window.innerHeight");
 		assertEquals("Q.助成金書類の作成方法が分かりません", getText(getElementByCssSelector("dt[class='mb10']")));
 		getEvidence(new Object(){});
@@ -95,7 +95,7 @@ public class Case05 {
 	@DisplayName("テスト06 「クリア」ボタン押下で入力したキーワードを消去")
 	void test06() {
 		scrollTo("0");
-		visibilityTimeout(By.cssSelector("h2"), 30);
+		visibilityTimeout(By.cssSelector("input[type='button']"), 10);
 		clickElement(getElementByCssSelector("input[type='button']"));
 		assertEquals("", getText(getElementById("form")));
 		getEvidence(new Object(){});
