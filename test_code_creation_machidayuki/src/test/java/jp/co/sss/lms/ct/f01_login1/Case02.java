@@ -10,6 +10,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
 
 /**
  * 結合テスト ログイン機能①
@@ -37,7 +38,7 @@ public class Case02 {
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
 		goTo("http://localhost:8080/lms/");
-		pageLoadTimeout(30);
+		pageLoadTimeout(10);
 		assertEquals("ログイン | LMS", getTitle());
 		getEvidence(new Object() {
 		});
@@ -50,7 +51,7 @@ public class Case02 {
 		inputAtElement(getElementById("loginId"), "StudentZZ01");
 		inputAtElement(getElementById("password"), "StudentZZ01");
 		clickElement(getElementByCssSelector("input[class='btn btn-primary']"));
-		pageLoadTimeout(90);
+		visibilityTimeout(By.cssSelector("span[class='help-inline error']"), 10);
 		assertEquals("* ログインに失敗しました。", getText(getElementByCssSelector("span[class='help-inline error']")));
 		getEvidence(new Object() {
 		});
