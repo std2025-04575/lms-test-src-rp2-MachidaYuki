@@ -50,7 +50,7 @@ public class Case04 {
 		inputAtElement(getElementById("loginId"), "StudentAA01");
 		inputAtElement(getElementById("password"), "StudentAA01Test");
 		clickElement(getElementByCssSelector("input[class='btn btn-primary']"));
-		visibilityTimeout(By.cssSelector("li[class=\"active\"]"), 10);
+		visibilityTimeout(By.cssSelector("li[class='active']"), 10);
 		assertEquals("コース詳細 | LMS", getTitle());
 		getEvidence(new Object(){});
 	}
