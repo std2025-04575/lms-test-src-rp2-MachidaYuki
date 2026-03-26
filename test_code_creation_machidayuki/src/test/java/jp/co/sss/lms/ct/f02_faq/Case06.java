@@ -47,10 +47,10 @@ public class Case06 {
 	@Order(2)
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
-		setLoginId("StudentAA01");
-		setPassword("StudentAA01Test");
-		clickButton("input[class='btn btn-primary']");
-		visibilityTimeout(By.cssSelector("li[class='active']"), 30);
+		inputAtElement(getElementById("loginId"), "StudentAA01");
+		inputAtElement(getElementById("password"), "StudentAA01Test");
+		clickElement(getElementByCssSelector("input[class='btn btn-primary']"));
+		visibilityTimeout(By.cssSelector("li[class=\"active\"]"), 30);
 		assertEquals("コース詳細 | LMS", getTitle());
 		getEvidence(new Object(){});
 	}
@@ -59,8 +59,8 @@ public class Case06 {
 	@Order(3)
 	@DisplayName("テスト03 上部メニューの「ヘルプ」リンクからヘルプ画面に遷移")
 	void test03() {
-		clickLink("機能");
-		clickLink("ヘルプ");
+		clickElement(getLink("機能"));
+		clickElement(getLink("ヘルプ"));
 		visibilityTimeout(By.cssSelector("div[class='panel panel-primary']"), 30);
 		assertEquals("ヘルプ | LMS", getTitle());
 		getEvidence(new Object(){});
@@ -70,9 +70,9 @@ public class Case06 {
 	@Order(4)
 	@DisplayName("テスト04 「よくある質問」リンクからよくある質問画面を別タブに開く")
 	void test04() {
-		clickLink("よくある質問");
+		clickElement(getLink("よくある質問"));
 		changeWindow();
-		visibilityTimeout(By.cssSelector("form[class='form-horizontal']"), 30);
+		visibilityTimeout(By.cssSelector("h2"), 30);
 		assertEquals("よくある質問 | LMS", getTitle());
 		getEvidence(new Object(){});
 	}
@@ -81,9 +81,9 @@ public class Case06 {
 	@Order(5)
 	@DisplayName("テスト05 カテゴリ検索で該当カテゴリの検索結果だけ表示")
 	void test05() {
-		clickLink("【研修関係】");
+		clickElement(getLink("【研修関係】"));
 		scrollBy("window.innerHeight");
-		assertEquals("Q.キャンセル料・途中退校について", getMessage("dt[class='mb10']"));
+		assertEquals("Q.キャンセル料・途中退校について", getText(getElementByCssSelector("dt[class='mb10']")));
 		getEvidence(new Object(){});
 	}
 
@@ -91,8 +91,8 @@ public class Case06 {
 	@Order(6)
 	@DisplayName("テスト06 検索結果の質問をクリックしその回答を表示")
 	void test06() {
-		clickButton("dt[class='mb10']");
-		assertTrue(checkDisplayed("answer-h[${status.index}]"));
+		clickElement(getElementByCssSelector("dt[class='mb10']"));
+		assertTrue(checkDisplayed(getElementById("answer-h[${status.index}]")));
 		getEvidence(new Object(){});
 	}
 
