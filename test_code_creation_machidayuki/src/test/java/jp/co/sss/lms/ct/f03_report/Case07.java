@@ -1,6 +1,7 @@
 package jp.co.sss.lms.ct.f03_report;
 
 import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 /**
  * 結合テスト レポート機能
@@ -35,35 +38,55 @@ public class Case07 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
-		// TODO ここに追加
+		goTo("http://localhost:8080/lms/");
+		pageLoadTimeout(10);
+		assertEquals("ログイン | LMS", getTitle());
+		getEvidence(new Object(){});
 	}
 
 	@Test
 	@Order(2)
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
-		// TODO ここに追加
+		inputAtElement(getElementById("loginId"), "StudentAA01");
+		inputAtElement(getElementById("password"), "StudentAA01Test");
+		clickElement(getElementByCssSelector("input[class='btn btn-primary']"));
+		visibilityTimeout(By.cssSelector("li[class='active']"), 10);
+		assertEquals("コース詳細 | LMS", getTitle());
+		getEvidence(new Object(){});
 	}
 
 	@Test
 	@Order(3)
 	@DisplayName("テスト03 未提出の研修日の「詳細」ボタンを押下しセクション詳細画面に遷移")
 	void test03() {
-		// TODO ここに追加
+		WebElement reportFlg = webDriver.findElement(By.xpath("//span['未提出']"));
+		reportFlg.findElement(By.xpath("//input[@value='詳細']")).click();
+		visibilityTimeout(By.className("active"), 10);
+		assertEquals("セクション詳細 | LMS", getTitle());
+		getEvidence(new Object(){});
 	}
 
 	@Test
 	@Order(4)
 	@DisplayName("テスト04 「提出する」ボタンを押下しレポート登録画面に遷移")
 	void test04() {
-		// TODO ここに追加
+		clickElement(getElementByCssSelector("input[class='btn btn-default']"));
+		visibilityTimeout(By.tagName("h2"), 10);
+		assertEquals("レポート登録 | LMS", getTitle());
+		getEvidence(new Object(){});
 	}
 
 	@Test
 	@Order(5)
 	@DisplayName("テスト05 報告内容を入力して「提出する」ボタンを押下し確認ボタン名が更新される")
 	void test05() {
-		// TODO ここに追加
+		inputAtElement(getElementById("content_0"), "今日はできました。");
+		clickElement(getElementByCssSelector("button[class='btn btn-primary']"));
+		visibilityTimeout(By.className("active"), 10);
+		assertEquals("セクション詳細 | LMS", getTitle());
+		assertEquals("提出済み日報【デモ】を確認する", getElementByCssSelector("input[class='btn btn-default']").getAttribute("value"));
+		getEvidence(new Object(){});
 	}
 
 }
